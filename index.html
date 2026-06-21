@@ -22,7 +22,7 @@
       --text: #e5ede8;
       --muted: #8fa696;
       --accent: #6ce091;
-      --accent-glow: rgba(108, 224, 145, 0.25);
+      --accent-glow: rgba(108, 224, 145, 0.3);
       --border: rgba(255, 255, 255, 0.06);
       --border-light: rgba(255, 255, 255, 0.12);
       --radius: 20px;
@@ -129,7 +129,7 @@
       font-size: 0.75rem;
     }
 
-    /* --- SPLASH SCREEN --- */
+    /* --- SPLASH SCREEN (SEQUENTIAL) --- */
     #splash {
       position: fixed;
       top: 0;
@@ -142,59 +142,64 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
     }
     #splash.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
-    .splash-word {
+    .splash-box {
+      text-align: center;
+      overflow: hidden;
+      height: clamp(4rem, 12vw, 7rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #splash-word {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 14vw, 7rem);
+      font-size: clamp(3.5rem, 14vw, 7rem);
       font-weight: 700;
       color: var(--accent);
-      opacity: 0;
-      transform: translateY(30px) scale(0.96);
-      animation: splashFade 0.8s ease forwards;
-      text-shadow: 0 0 60px var(--accent-glow);
-      margin: 0.05em 0;
+      text-shadow: 0 0 80px var(--accent-glow);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+      opacity: 1;
+      transform: translateY(0);
       letter-spacing: 2px;
     }
-    .splash-word:nth-child(1) {
-      animation-delay: 0.1s;
+    #splash-word.slide-out {
+      opacity: 0;
+      transform: translateY(-40px) scale(0.96);
     }
-    .splash-word:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-    .splash-word:nth-child(3) {
-      animation-delay: 0.9s;
-    }
-    .splash-word:nth-child(4) {
-      animation-delay: 1.3s;
-    }
-    .splash-word:nth-child(5) {
-      animation-delay: 1.7s;
-    }
-    @keyframes splashFade {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    #splash-word.slide-in {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
     .splash-sub {
       color: var(--muted);
       font-size: 0.9rem;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       letter-spacing: 6px;
       text-transform: uppercase;
       animation: pulseText 2s infinite;
+    }
+    .splash-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin: 0 4px;
+      animation: pulseDot 1.4s infinite;
+    }
+    .splash-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .splash-dot:nth-child(3) {
+      animation-delay: 0.4s;
     }
 
     /* --- NAV --- */
@@ -249,11 +254,10 @@
       background: var(--accent);
       transition: width var(--transition);
     }
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--text);
     }
-    .nav-links a.active::after {
+    .nav-links a:hover::after {
       width: 100%;
     }
     .nav-actions {
@@ -261,40 +265,26 @@
       gap: 0.8rem;
       align-items: center;
     }
+    /* --- IMPROVED LOGIN BUTTON --- */
     .login-btn {
-      background: none;
-      border: none;
-      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text);
       cursor: pointer;
-      font-size: 0.8rem;
-      transition: color var(--transition);
-      font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      transition: all var(--transition);
+      letter-spacing: 0.3px;
     }
     .login-btn:hover {
+      border-color: var(--accent);
       color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
-    /* --- PAGES (SPA) --- */
-    .page {
-      display: none;
-      animation: fadeInPage 0.6s ease;
-      padding-top: 1rem;
-    }
-    .page.active {
-      display: block;
-    }
-    @keyframes fadeInPage {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- HERO (HOME) --- */
+    /* --- HERO --- */
     .hero {
       min-height: 80vh;
       display: flex;
@@ -422,7 +412,7 @@
       }
     }
 
-    /* Language Rotator */
+    /* Language Rotator (Hero) */
     .lang-rotator {
       display: inline-flex;
       align-items: center;
@@ -442,7 +432,7 @@
     .lang-rotator .dynamic-text {
       font-weight: 600;
       color: var(--accent);
-      min-width: 80px;
+      min-width: 90px;
       display: inline-block;
       text-align: center;
       font-size: 1rem;
@@ -496,9 +486,10 @@
       }
     }
 
-    /* --- FEATURES (Voice) --- */
-    .voice-library {
+    /* --- VOICE LIBRARY (Features) --- */
+    #demo {
       padding: 5rem 5% 4rem;
+      scroll-margin-top: 80px;
     }
     .voice-grid {
       display: grid;
@@ -643,10 +634,11 @@
       margin-top: 1rem;
     }
 
-    /* Process (inside features) */
+    /* --- PROCESS --- */
     .how-it-works {
       padding: 5rem 5% 4rem;
       background: rgba(255, 255, 255, 0.005);
+      scroll-margin-top: 80px;
     }
     .process-container {
       display: flex;
@@ -875,11 +867,12 @@
     }
 
     /* --- WHY US --- */
-    .why-us {
+    #why-us {
       padding: 5rem 5%;
       background: rgba(255, 255, 255, 0.01);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
     .why-grid {
       display: grid;
@@ -932,8 +925,8 @@
       font-size: 0.9rem;
     }
 
-    /* --- MULTILINGUAL (dedicated page) --- */
-    .multilingual-page {
+    /* --- MULTILINGUAL SECTION (Why Us page) --- */
+    .multilingual-deep {
       padding: 5rem 5%;
       background: rgba(255, 255, 255, 0.005);
       border-bottom: 1px solid var(--border);
@@ -942,7 +935,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1.5rem;
-      max-width: 800px;
+      max-width: 700px;
       margin: 2rem auto 0;
       text-align: center;
     }
@@ -966,8 +959,9 @@
     }
 
     /* --- PRICING --- */
-    .pricing-page {
+    #pricing {
       padding: 5rem 5%;
+      scroll-margin-top: 80px;
     }
     .pricing-grid {
       display: grid;
@@ -1054,11 +1048,12 @@
     }
 
     /* --- CONTACT --- */
-    .contact-section {
+    #contact {
       padding: 5rem 5% 4rem;
+      scroll-margin-top: 80px;
     }
     .contact-box {
-      max-width: 520px;
+      max-width: 580px;
       margin: 0 auto;
       background: var(--bg-card);
       padding: 3rem;
@@ -1069,7 +1064,7 @@
     .contact-box h2 {
       font-family: 'Inter', sans-serif;
       font-weight: 600;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
     .contact-box p {
       margin-bottom: 2rem;
@@ -1084,12 +1079,12 @@
     .audit-form select {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
-      padding: 0.9rem 1.2rem;
+      padding: 1rem 1.2rem;
       border-radius: var(--radius-sm);
       color: var(--text);
       font-size: 0.95rem;
       outline: none;
-      transition: border var(--transition);
+      transition: border var(--transition), box-shadow var(--transition);
       font-family: 'Inter', sans-serif;
     }
     .audit-form input::placeholder {
@@ -1098,10 +1093,20 @@
     .audit-form input:focus,
     .audit-form select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+      box-shadow: 0 0 0 4px var(--accent-glow);
     }
     .audit-form select option {
       background: var(--bg);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* --- FOOTER --- */
@@ -1334,6 +1339,10 @@
         padding: 0.4rem 1rem;
         font-size: 0.7rem;
       }
+      .login-btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+      }
       .hero {
         min-height: 70vh;
         padding: 1rem 4% 2rem;
@@ -1359,178 +1368,175 @@
 </head>
 <body>
 
-  <!-- ===== SPLASH SCREEN ===== -->
+  <!-- ===== SPLASH SCREEN (SEQUENTIAL) ===== -->
   <div id="splash">
-    <div class="splash-word">Vikasam</div>
-    <div class="splash-word">विकासम</div>
-    <div class="splash-word">விகாசம்</div>
-    <div class="splash-word">ವಿಕಾಸಮ್</div>
-    <div class="splash-word">వికాసం</div>
-    <div class="splash-sub">Growth, in motion</div>
+    <div class="splash-box">
+      <div id="splash-word">వికాసం</div>
+    </div>
+    <div class="splash-sub">
+      <span class="splash-dot"></span>
+      <span class="splash-dot"></span>
+      <span class="splash-dot"></span>
+    </div>
   </div>
 
   <!-- ===== NAV ===== -->
   <nav class="navbar">
-    <div class="nav-brand" onclick="navigateTo('home')">
+    <div class="nav-brand">
       <span class="logo-icon">⑂</span> VIKASAM
     </div>
     <div class="nav-links">
-      <a href="#" class="active" data-page="home">Home</a>
-      <a href="#" data-page="features">Features</a>
-      <a href="#" data-page="why-us">Why Us</a>
-      <a href="#" data-page="pricing">Pricing</a>
-      <a href="#" data-page="contact">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#demo">Features</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
     </div>
     <div class="nav-actions">
       <button class="login-btn" onclick="openLoginModal()">Client Login</button>
-      <a href="#" class="btn-primary btn-sm" onclick="navigateTo('contact')">Book Free Audit</a>
+      <a href="#contact" class="btn-primary btn-sm">Book Free Audit</a>
     </div>
   </nav>
 
-  <!-- ===== PAGES ===== -->
-  <main>
-    <!-- HOME -->
-    <section id="page-home" class="page active">
-      <div class="hero">
-        <div class="hero-content">
-          <div class="hero-text scroll-reveal">
-            <p class="eyebrow">VIKASAM • వికాసం • "GROWTH, IN MOTION"</p>
-            <h1>One root system. <span class="highlight">Three</span> ways your business grows.</h1>
-            <p class="subtitle">We build the WhatsApp conversations, the booking flows, and the voice agents that pick up your leads the second they land.</p>
-            <div class="hero-cta">
-              <a href="#" class="btn-primary" onclick="navigateTo('contact')">Book a Free Audit</a>
-              <a href="#" class="btn-secondary" onclick="navigateTo('features')">Hear the AI ↓</a>
-            </div>
-            <!-- Language Rotator -->
-            <div class="lang-rotator">
-              <span class="label">🌐 Our AI speaks</span>
-              <span class="dynamic-text" id="rotatingLang">हिन्दी</span>
-            </div>
-          </div>
-          <div class="hero-visual scroll-reveal scroll-reveal-delay-1">
-            <div class="tree-graphic">
-              <div class="node left"><span class="dot-pulse"></span>WhatsApp Automation</div>
-              <div class="node center"><span class="dot-pulse"></span>Appointment Booking</div>
-              <div class="node right"><span class="dot-pulse"></span>AI Voice Agent</div>
-              <div class="stem"></div>
-            </div>
-          </div>
+  <!-- ===== HOME ===== -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text scroll-reveal">
+        <p class="eyebrow">VIKASAM • వికాసం • "GROWTH, IN MOTION"</p>
+        <h1>One root system. <span class="highlight">Three</span> ways your business grows.</h1>
+        <p class="subtitle">We build the WhatsApp conversations, the booking flows, and the voice agents that pick up your leads the second they land.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Book a Free Audit</a>
+          <a href="#demo" class="btn-secondary">Hear the AI ↓</a>
+        </div>
+        <!-- Language Rotator (Telugu → English → Hindi) -->
+        <div class="lang-rotator">
+          <span class="label">🌐 Our AI speaks</span>
+          <span class="dynamic-text" id="rotatingLang">తెలుగు</span>
         </div>
       </div>
-
-      <!-- Marquee -->
-      <div class="built-for-section scroll-reveal">
-        <span class="built-for-label">BUILT FOR</span>
-        <div class="marquee-container">
-          <div class="marquee-content">
-            <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
-            <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
-            <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
-            <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
-          </div>
+      <div class="hero-visual scroll-reveal scroll-reveal-delay-1">
+        <div class="tree-graphic">
+          <div class="node left"><span class="dot-pulse"></span>WhatsApp Automation</div>
+          <div class="node center"><span class="dot-pulse"></span>Appointment Booking</div>
+          <div class="node right"><span class="dot-pulse"></span>AI Voice Agent</div>
+          <div class="stem"></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FEATURES -->
-    <section id="page-features" class="page">
-      <div class="voice-library">
-        <div class="section-header scroll-reveal">
-          <h2>Native voices that build trust.</h2>
-          <p>Listen to our pre‑trained AI agents built specifically for Indian businesses.</p>
+  <!-- ===== MARQUEE ===== -->
+  <div class="built-for-section scroll-reveal">
+    <span class="built-for-label">BUILT FOR</span>
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
+        <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
+        <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
+        <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FEATURES (Voice + Process) ===== -->
+  <section id="demo">
+    <div class="section-header scroll-reveal">
+      <h2>Native voices that build trust.</h2>
+      <p>Listen to our pre‑trained AI agents built specifically for Indian businesses.</p>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card premium scroll-reveal scroll-reveal-delay-1">
+        <div class="voice-header">
+          <h3>Vikasam</h3>
+          <span class="tag highlight-tag">✦ Flagship Agent</span>
         </div>
-        <div class="voice-grid">
-          <div class="voice-card premium scroll-reveal scroll-reveal-delay-1">
-            <div class="voice-header">
-              <h3>Vikasam</h3>
-              <span class="tag highlight-tag">✦ Flagship Agent</span>
-            </div>
-            <div class="custom-audio-player" data-duration="52">
-              <div class="player-controls">
-                <button class="play-btn" aria-label="Play audio">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                </button>
-                <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
-              </div>
-              <div class="time-display">
-                <span class="time-current">0:00</span>
-                <span class="time-total">0:52</span>
-              </div>
-            </div>
-            <p class="voice-description">Our flagship agent — fluent, persuasive, and built to close.</p>
+        <div class="custom-audio-player" data-duration="52">
+          <div class="player-controls">
+            <button class="play-btn" aria-label="Play audio">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </button>
+            <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
           </div>
-          <div class="voice-card scroll-reveal scroll-reveal-delay-2">
-            <div class="voice-header">
-              <h3>Kavya</h3>
-              <span class="tag">Warm &amp; Conversational</span>
-            </div>
-            <div class="custom-audio-player" data-duration="45">
-              <div class="player-controls">
-                <button class="play-btn" aria-label="Play audio">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                </button>
-                <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
-              </div>
-              <div class="time-display">
-                <span class="time-current">0:00</span>
-                <span class="time-total">0:45</span>
-              </div>
-            </div>
-            <p class="voice-description">Warm, friendly, and natural — perfect for first‑touch conversations.</p>
+          <div class="time-display">
+            <span class="time-current">0:00</span>
+            <span class="time-total">0:52</span>
           </div>
-          <div class="voice-card scroll-reveal scroll-reveal-delay-3">
-            <div class="voice-header">
-              <h3>Dheeraj</h3>
-              <span class="tag">Deep &amp; Professional</span>
-            </div>
-            <div class="custom-audio-player" data-duration="38">
-              <div class="player-controls">
-                <button class="play-btn" aria-label="Play audio">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                </button>
-                <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
-              </div>
-              <div class="time-display">
-                <span class="time-current">0:00</span>
-                <span class="time-total">0:38</span>
-              </div>
-            </div>
-            <p class="voice-description">Authoritative and clear — ideal for B2B and high‑ticket conversations.</p>
+        </div>
+        <p class="voice-description">Our flagship agent — fluent in Telugu, English & Hindi. Built to close.</p>
+      </div>
+      <div class="voice-card scroll-reveal scroll-reveal-delay-2">
+        <div class="voice-header">
+          <h3>Kavya</h3>
+          <span class="tag">Warm &amp; Conversational</span>
+        </div>
+        <div class="custom-audio-player" data-duration="45">
+          <div class="player-controls">
+            <button class="play-btn" aria-label="Play audio">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </button>
+            <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
           </div>
+          <div class="time-display">
+            <span class="time-current">0:00</span>
+            <span class="time-total">0:45</span>
+          </div>
+        </div>
+        <p class="voice-description">Warm, friendly, and natural — perfect for first‑touch conversations.</p>
+      </div>
+      <div class="voice-card scroll-reveal scroll-reveal-delay-3">
+        <div class="voice-header">
+          <h3>Dheeraj</h3>
+          <span class="tag">Deep &amp; Professional</span>
+        </div>
+        <div class="custom-audio-player" data-duration="38">
+          <div class="player-controls">
+            <button class="play-btn" aria-label="Play audio">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </button>
+            <div class="wave-container"><div class="wave-fill" style="width:0%"></div></div>
+          </div>
+          <div class="time-display">
+            <span class="time-current">0:00</span>
+            <span class="time-total">0:38</span>
+          </div>
+        </div>
+        <p class="voice-description">Authoritative and clear — ideal for B2B and high‑ticket conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <div class="how-it-works">
+    <div class="section-header scroll-reveal">
+      <h2>How It Actually Works</h2>
+    </div>
+    <div class="process-container">
+      <div class="process-steps scroll-reveal">
+        <div class="step-card active" data-target="visual-webhook">
+          <span class="step-index">Step 1</span>
+          <h4>Lead Captured</h4>
+          <p>A prospect fills out a lead form. Instantly, their data hits our system.</p>
+        </div>
+        <div class="step-card" data-target="visual-call">
+          <span class="step-index">Step 2</span>
+          <h4>The 2‑Second Call</h4>
+          <p>Our AI dials them within 2 seconds. It speaks fluent Telugu or English.</p>
+        </div>
+        <div class="step-card" data-target="visual-qualify">
+          <span class="step-index">Step 3</span>
+          <h4>Meeting Booked</h4>
+          <p>The AI answers objections, qualifies the lead, and books them in your calendar.</p>
         </div>
       </div>
-
-      <!-- Process -->
-      <div class="how-it-works">
-        <div class="section-header scroll-reveal">
-          <h2>How It Actually Works</h2>
-        </div>
-        <div class="process-container">
-          <div class="process-steps scroll-reveal">
-            <div class="step-card active" data-target="visual-webhook">
-              <span class="step-index">Step 1</span>
-              <h4>Lead Captured</h4>
-              <p>A prospect fills out a lead form. Instantly, their data hits our system.</p>
+      <div class="process-visuals scroll-reveal scroll-reveal-delay-1">
+        <div id="visual-webhook" class="visual-panel active-visual">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">webhook.json</span>
             </div>
-            <div class="step-card" data-target="visual-call">
-              <span class="step-index">Step 2</span>
-              <h4>The 2‑Second Call</h4>
-              <p>Our AI dials them within 2 seconds. It speaks fluent Telugu or English.</p>
-            </div>
-            <div class="step-card" data-target="visual-qualify">
-              <span class="step-index">Step 3</span>
-              <h4>Meeting Booked</h4>
-              <p>The AI answers objections, qualifies the lead, and books them in your calendar.</p>
-            </div>
-          </div>
-          <div class="process-visuals scroll-reveal scroll-reveal-delay-1">
-            <div id="visual-webhook" class="visual-panel active-visual">
-              <div class="code-block">
-                <div class="code-header">
-                  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                  <span class="filename">webhook.json</span>
-                </div>
-                <pre><code>{
+            <pre><code>{
   "event": "lead_captured",
   "source": "Meta Ads",
   "contact": {
@@ -1539,159 +1545,147 @@
   },
   "trigger": "Initiate_AI_Call"
 }</code></pre>
-              </div>
-            </div>
-            <div id="visual-call" class="visual-panel">
-              <div class="call-graphic">
-                <h4>Incoming Call</h4>
-                <h2>Vikasam AI</h2>
-                <p class="status">Speaking Telugu...</p>
-                <div class="call-waves"><span></span><span></span><span></span><span></span><span></span></div>
-              </div>
-            </div>
-            <div id="visual-qualify" class="visual-panel">
-              <div class="success-graphic">
-                <div class="check-circle">✓</div>
-                <h3>Meeting Booked</h3>
-                <p>Added to Google Calendar</p>
-              </div>
-            </div>
+          </div>
+        </div>
+        <div id="visual-call" class="visual-panel">
+          <div class="call-graphic">
+            <h4>Incoming Call</h4>
+            <h2>Vikasam AI</h2>
+            <p class="status">Speaking Telugu...</p>
+            <div class="call-waves"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div id="visual-qualify" class="visual-panel">
+          <div class="success-graphic">
+            <div class="check-circle">✓</div>
+            <h3>Meeting Booked</h3>
+            <p>Added to Google Calendar</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- WHY US -->
-    <section id="page-why-us" class="page">
-      <div class="why-us">
-        <div class="section-header scroll-reveal">
-          <h2>Why Vikasam?</h2>
-          <p>We don't just build AI — we build revenue engines.</p>
-        </div>
-        <div class="why-grid">
-          <div class="why-card scroll-reveal scroll-reveal-delay-1">
-            <span class="why-icon">⚡</span>
-            <h3>2‑Second Response</h3>
-            <p>Leads are contacted instantly — no cold leads, no missed opportunities.</p>
-          </div>
-          <div class="why-card scroll-reveal scroll-reveal-delay-2">
-            <span class="why-icon">🌐</span>
-            <h3>Multilingual AI</h3>
-            <p>Speaks Telugu, Hindi, and English — auto‑switches based on the caller.</p>
-          </div>
-          <div class="why-card scroll-reveal scroll-reveal-delay-3">
-            <span class="why-icon">📈</span>
-            <h3>Scalable &amp; Reliable</h3>
-            <p>Handle 1000s of calls simultaneously without hiring a single extra person.</p>
-          </div>
-          <div class="why-card scroll-reveal scroll-reveal-delay-4">
-            <span class="why-icon">💰</span>
-            <h3>80% Cost Reduction</h3>
-            <p>Compared to human agents — same quality, fraction of the cost.</p>
-          </div>
-        </div>
+  <!-- ===== WHY US ===== -->
+  <section id="why-us">
+    <div class="section-header scroll-reveal">
+      <h2>Why Vikasam?</h2>
+      <p>We don't just build AI — we build revenue engines.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card scroll-reveal scroll-reveal-delay-1">
+        <span class="why-icon">⚡</span>
+        <h3>2‑Second Response</h3>
+        <p>Leads are contacted instantly — no cold leads, no missed opportunities.</p>
       </div>
-
-      <!-- Multilingual deep dive -->
-      <div class="multilingual-page scroll-reveal">
-        <div class="section-header">
-          <h2>Speaks your customer’s language</h2>
-          <p>Our AI agent dynamically switches between Telugu, Hindi, and English — so every caller feels heard.</p>
-        </div>
-        <div class="lang-grid">
-          <div class="lang-item"><span class="script">తెలుగు</span> Telugu</div>
-          <div class="lang-item"><span class="script">हिन्दी</span> Hindi</div>
-          <div class="lang-item"><span class="script">English</span> English</div>
-          <div class="lang-item"><span class="script">தமிழ்</span> Tamil</div>
-          <div class="lang-item"><span class="script">ಕನ್ನಡ</span> Kannada</div>
-        </div>
-        <p style="text-align:center;margin-top:2rem;max-width:600px;margin-left:auto;margin-right:auto;">
-          If a prospect starts in Telugu, the AI replies in Telugu. If they switch to English, it switches instantly — no friction, no confusion.
-        </p>
+      <div class="why-card scroll-reveal scroll-reveal-delay-2">
+        <span class="why-icon">🌐</span>
+        <h3>Multilingual AI</h3>
+        <p>Speaks Telugu, English, and Hindi — auto‑switches based on the caller.</p>
       </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="page-pricing" class="page">
-      <div class="pricing-page">
-        <div class="section-header scroll-reveal">
-          <h2>Simple, transparent pricing</h2>
-          <p>Choose the plan that fits your business. All plans include our core AI engine.</p>
-        </div>
-        <div class="pricing-grid">
-          <!-- Starter -->
-          <div class="pricing-card scroll-reveal scroll-reveal-delay-1">
-            <h3>Starter</h3>
-            <div class="price">₹24,999 <span>/mo</span></div>
-            <p class="description">Perfect for small businesses testing AI voice.</p>
-            <ul>
-              <li>500 call minutes / month</li>
-              <li>WhatsApp automation</li>
-              <li>Basic booking flow</li>
-              <li>Email support</li>
-            </ul>
-            <a href="#" class="btn-primary" onclick="navigateTo('contact')">Get Started</a>
-          </div>
-
-          <!-- Growth (Popular) -->
-          <div class="pricing-card popular scroll-reveal scroll-reveal-delay-2">
-            <h3>Growth</h3>
-            <div class="price">₹49,999 <span>/mo</span></div>
-            <p class="description">For growing teams that need full automation.</p>
-            <ul>
-              <li>2,000 call minutes / month</li>
-              <li>WhatsApp + SMS automation</li>
-              <li>Multilingual AI (Telugu, Hindi, English)</li>
-              <li>Google Calendar & CRM integration</li>
-              <li>Priority support</li>
-            </ul>
-            <a href="#" class="btn-primary" onclick="navigateTo('contact')">Start Free Trial</a>
-          </div>
-
-          <!-- Enterprise -->
-          <div class="pricing-card scroll-reveal scroll-reveal-delay-3">
-            <h3>Enterprise</h3>
-            <div class="price">Custom</div>
-            <p class="description">For large teams with custom workflows.</p>
-            <ul>
-              <li>Unlimited call minutes</li>
-              <li>Dedicated AI agent (custom voice)</li>
-              <li>Advanced analytics & dashboard</li>
-              <li>Full API access</li>
-              <li>24/7 dedicated support</li>
-            </ul>
-            <a href="#" class="btn-primary" onclick="navigateTo('contact')">Contact Sales</a>
-          </div>
-        </div>
-        <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:2rem;">
-          * All prices are in INR. No hidden fees. Cancel anytime.
-        </p>
+      <div class="why-card scroll-reveal scroll-reveal-delay-3">
+        <span class="why-icon">📈</span>
+        <h3>Scalable &amp; Reliable</h3>
+        <p>Handle 1000s of calls simultaneously without hiring a single extra person.</p>
       </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="page-contact" class="page">
-      <div class="contact-section">
-        <div class="contact-box scroll-reveal">
-          <h2>Book Your Free Audit</h2>
-          <p>Tell us where the leads are going cold — we’ll build a custom solution.</p>
-          <form class="audit-form" id="auditForm">
-            <input type="text" placeholder="Name" required />
-            <input type="tel" placeholder="WhatsApp Number" required />
-            <input type="text" placeholder="Business Name" />
-            <select required>
-              <option value="">I'm interested in…</option>
-              <option>AI Voice Calling</option>
-              <option>WhatsApp Automation</option>
-              <option>Booking Automation</option>
-              <option>Full Suite</option>
-            </select>
-            <button type="submit" class="btn-primary full-width">Submit Request</button>
-          </form>
-        </div>
+      <div class="why-card scroll-reveal scroll-reveal-delay-4">
+        <span class="why-icon">💰</span>
+        <h3>80% Cost Reduction</h3>
+        <p>Compared to human agents — same quality, fraction of the cost.</p>
       </div>
-    </section>
-  </main>
+    </div>
+
+    <!-- Multilingual deep dive -->
+    <div class="multilingual-deep scroll-reveal">
+      <div class="section-header">
+        <h2>Speaks your customer’s language</h2>
+        <p>Our AI agent dynamically switches between <strong>Telugu, English, and Hindi</strong> — so every caller feels heard.</p>
+      </div>
+      <div class="lang-grid">
+        <div class="lang-item"><span class="script">తెలుగు</span> Telugu</div>
+        <div class="lang-item"><span class="script">English</span> English</div>
+        <div class="lang-item"><span class="script">हिन्दी</span> Hindi</div>
+      </div>
+      <p style="text-align:center;margin-top:2rem;max-width:600px;margin-left:auto;margin-right:auto;color:var(--muted);">
+        If a prospect starts in Telugu, the AI replies in Telugu. If they switch to English, it switches instantly — no friction, no confusion.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section id="pricing">
+    <div class="section-header scroll-reveal">
+      <h2>Simple, transparent pricing</h2>
+      <p>Choose the plan that fits your business. All plans include our core AI engine.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card scroll-reveal scroll-reveal-delay-1">
+        <h3>Starter</h3>
+        <div class="price">₹24,999 <span>/mo</span></div>
+        <p class="description">Perfect for small businesses testing AI voice.</p>
+        <ul>
+          <li>500 call minutes / month</li>
+          <li>WhatsApp automation</li>
+          <li>Basic booking flow</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card popular scroll-reveal scroll-reveal-delay-2">
+        <h3>Growth</h3>
+        <div class="price">₹49,999 <span>/mo</span></div>
+        <p class="description">For growing teams that need full automation.</p>
+        <ul>
+          <li>2,000 call minutes / month</li>
+          <li>WhatsApp + SMS automation</li>
+          <li>Multilingual AI (Telugu, English, Hindi)</li>
+          <li>Google Calendar & CRM integration</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Start Free Trial</a>
+      </div>
+      <div class="pricing-card scroll-reveal scroll-reveal-delay-3">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <p class="description">For large teams with custom workflows.</p>
+        <ul>
+          <li>Unlimited call minutes</li>
+          <li>Dedicated AI agent (custom voice)</li>
+          <li>Advanced analytics & dashboard</li>
+          <li>Full API access</li>
+          <li>24/7 dedicated support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Contact Sales</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:2rem;">
+      * All prices are in INR. No hidden fees. Cancel anytime.
+    </p>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="contact-box scroll-reveal">
+      <h2>Book Your Free Audit</h2>
+      <p>Tell us where the leads are going cold — we’ll build a custom solution.</p>
+      <form class="audit-form" id="auditForm">
+        <div class="form-row">
+          <input type="text" placeholder="Full Name" required />
+          <input type="tel" placeholder="WhatsApp Number" required />
+        </div>
+        <input type="text" placeholder="Business Name" />
+        <input type="text" placeholder="Business Type (e.g., Real Estate, Clinic, Agency)" />
+        <select required>
+          <option value="">I'm interested in…</option>
+          <option>AI Voice Calling</option>
+          <option>WhatsApp Automation</option>
+          <option>Booking Automation</option>
+          <option>Full Suite</option>
+        </select>
+        <button type="submit" class="btn-primary full-width">Submit Request</button>
+      </form>
+    </div>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -1728,94 +1722,60 @@
     (function() {
       'use strict';
 
-      // ===== SPLASH =====
+      // ===== SPLASH SCREEN (SEQUENTIAL: Telugu → English → Hindi) =====
       const splash = document.getElementById('splash');
+      const splashWord = document.getElementById('splash-word');
+      const langSequence = ['వికాసం', 'Vikasam', 'विकासम'];
+      let idx = 0;
+
+      function cycleSplash() {
+        idx = (idx + 1) % langSequence.length;
+        splashWord.classList.remove('slide-in');
+        splashWord.classList.add('slide-out');
+
+        setTimeout(() => {
+          splashWord.textContent = langSequence[idx];
+          splashWord.classList.remove('slide-out');
+          splashWord.classList.add('slide-in');
+        }, 400);
+      }
+
+      // Initial state
+      splashWord.textContent = langSequence[0];
+      splashWord.classList.add('slide-in');
+
+      // Change every 1.5 seconds
+      let splashInterval = setInterval(cycleSplash, 1800);
+
+      // Hide splash after 5.5 seconds (allows 3 transitions + hold)
       let splashTimer = setTimeout(() => {
+        clearInterval(splashInterval);
         splash.classList.add('hidden');
-      }, 4000);
+      }, 5500);
+
+      // Tap/click to skip splash early
       splash.addEventListener('click', function() {
         clearTimeout(splashTimer);
+        clearInterval(splashInterval);
         splash.classList.add('hidden');
       });
 
-      // ===== LANGUAGE ROTATOR (Hero) =====
-      const langList = ['हिन्दी', 'English', 'ಕನ್ನಡ', 'தமிழ்', 'తెలుగు'];
-      let langIndex = 0;
+      // ===== LANGUAGE ROTATOR (Hero: Telugu → English → Hindi) =====
+      const heroLangs = ['తెలుగు', 'English', 'हिन्दी'];
+      let heroIdx = 0;
       const langEl = document.getElementById('rotatingLang');
       if (langEl) {
         setInterval(() => {
-          langIndex = (langIndex + 1) % langList.length;
+          heroIdx = (heroIdx + 1) % heroLangs.length;
           langEl.style.opacity = '0';
           setTimeout(() => {
-            langEl.textContent = langList[langIndex];
+            langEl.textContent = heroLangs[heroIdx];
             langEl.style.opacity = '1';
-          }, 200);
-        }, 2200);
+          }, 250);
+        }, 2400);
       }
 
-      // ===== SPA ROUTING =====
-      const pages = {
-        home: document.getElementById('page-home'),
-        features: document.getElementById('page-features'),
-        'why-us': document.getElementById('page-why-us'),
-        pricing: document.getElementById('page-pricing'),
-        contact: document.getElementById('page-contact')
-      };
-      const navLinks = document.querySelectorAll('.nav-links a');
-
-      function navigateTo(pageId) {
-        // Hide all pages
-        Object.values(pages).forEach(p => p.classList.remove('active'));
-        // Show target
-        if (pages[pageId]) pages[pageId].classList.add('active');
-        // Update nav
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.dataset.page === pageId) {
-            link.classList.add('active');
-          }
-        });
-        // Update URL hash
-        if (history.pushState) {
-          history.pushState(null, '', '#' + pageId);
-        }
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Re-trigger scroll reveal for new page
-        setTimeout(() => {
-          const reveals = document.querySelectorAll('.page.active .scroll-reveal');
-          reveals.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight) {
-              el.classList.add('visible');
-            }
-          });
-        }, 300);
-      }
-
-      // Nav click handlers
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const page = this.dataset.page;
-          if (page) navigateTo(page);
-        });
-      });
-
-      // Hash change listener
-      window.addEventListener('hashchange', function() {
-        const hash = window.location.hash.replace('#', '') || 'home';
-        if (pages[hash]) navigateTo(hash);
-      });
-
-      // Handle initial hash on load
-      const initHash = window.location.hash.replace('#', '') || 'home';
-      if (pages[initHash]) navigateTo(initHash);
-      else navigateTo('home');
-
-      // Expose navigateTo globally for onclick
-      window.navigateTo = navigateTo;
-
-      // ===== SCROLL REVEAL (for active page) =====
+      // ===== SCROLL REVEAL =====
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1825,26 +1785,8 @@
         });
       }, { threshold: 0.18, rootMargin: '0px 0px -30px 0px' });
 
-      // Observe all scroll-reveal elements that are inside the active page
-      function observeReveals() {
-        document.querySelectorAll('.page.active .scroll-reveal').forEach(el => {
-          if (!el.classList.contains('visible')) {
-            revealObserver.observe(el);
-          }
-        });
-      }
-      // Initial observe
-      observeReveals();
-
-      // Re-observe when page changes (hack: after navigation)
-      const origNavigate = navigateTo;
-      navigateTo = function(pageId) {
-        origNavigate(pageId);
-        setTimeout(observeReveals, 400);
-      };
-      // Override hashchange to re-observe
-      window.addEventListener('hashchange', function() {
-        setTimeout(observeReveals, 400);
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        revealObserver.observe(el);
       });
 
       // ===== HOW IT WORKS – TABS =====
@@ -2005,6 +1947,21 @@
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeLoginModal();
+      });
+
+      // ===== SMOOTH ANCHOR SCROLL (offset for sticky nav) =====
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
       });
 
       // ===== CLEANUP =====
