@@ -16,50 +16,116 @@ if (menuToggle && mobileNav) {
   });
 }
 
-// Contact form — placeholder submit handling (wire to your backend / WhatsApp API / email service)
+// How It Works Tabs
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active class from all
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    // Add active class to clicked
+    btn.classList.add('active');
+    const target = document.getElementById(btn.getAttribute('data-target'));
+    if (target) {
+      target.classList.add('active');
+    }
+  });
+});
+
+// Audio Player Simulators for "Hear the AI"
+const voiceCards = document.querySelectorAll('.voice-card');
+let activeInterval = null;
+
+voiceCards.forEach(card => {
+  const playBtn = card.querySelector('.play-btn');
+  const fill = card.querySelector('.wave-fill');
+  const timeCurrent = card.querySelector('.time-current');
+  const maxTimeStr = card.querySelector('.time-total').textContent;
+  
+  // Parse simple max time (e.g., "0:45" -> 45s)
+  const maxTimeParts = maxTimeStr.split(':');
+  const maxSeconds = parseInt(maxTimeParts[0]) * 60 + parseInt(maxTimeParts[1]);
+  
+  let isPlaying = false;
+  let currentSec = 0;
+
+  playBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      // Pause
+      clearInterval(activeInterval);
+      isPlaying = false;
+      playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>'; // Play Icon
+    } else {
+      // Pause others
+      voiceCards.forEach(c => {
+         c.querySelector('.play-btn').innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>';
+         c.querySelector('.wave-fill').style.width = '0%';
+         c.querySelector('.time-current').textContent = '0:00';
+      });
+      clearInterval(activeInterval);
+      
+      // Play Current
+      isPlaying = true;
+      currentSec = 0;
+      playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>'; // Pause Icon
+      
+      activeInterval = setInterval(() => {
+        currentSec++;
+        let percentage = (currentSec / maxSeconds) * 100;
+        fill.style.width = percentage + '%';
+        
+        let displaySec = currentSec % 60;
+        let displayMin = Math.floor(currentSec / 60);
+        timeCurrent.textContent = `${displayMin}:${displaySec.toString().padStart(2, '0')}`;
+
+        if (currentSec >= maxSeconds) {
+          clearInterval(activeInterval);
+          isPlaying = false;
+          playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>';
+          fill.style.width = '0%';
+          timeCurrent.textContent = '0:00';
+        }
+      }, 1000); // 1 second tick
+    }
+  });
+});
+
+// Form Submission
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(contactForm).entries());
-    console.log('Audit request submitted:', data);
-
     const btn = contactForm.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
     btn.textContent = 'Request Sent ✓';
     btn.disabled = true;
-    btn.style.opacity = '0.7';
-
     contactForm.reset();
-
     setTimeout(() => {
       btn.textContent = originalText;
       btn.disabled = false;
-      btn.style.opacity = '1';
     }, 3000);
   });
 }
 
-// Only run scroll-reveal if the user hasn't asked for reduced motion
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Scroll Reveal Observer
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15
+};
 
-if (!prefersReducedMotion) {
-  const revealTargets = document.querySelectorAll('.problem-card, .system-row, .process-step, .why-card, .faq-item');
-  revealTargets.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(16px)';
-    el.style.transition = 'opacity .6s cubic-bezier(.22,.9,.3,1), transform .6s cubic-bezier(.22,.9,.3,1)';
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
   });
+}, observerOptions);
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-  revealTargets.forEach(el => observer.observe(el));
-}
+document.querySelectorAll('.scroll-reveal').forEach(el => {
+  observer.observe(el);
+});
