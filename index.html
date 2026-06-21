@@ -1,393 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vikasam — WhatsApp, Booking & Voice AI Automation for Indian Businesses</title>
-<meta name="description" content="Vikasam builds WhatsApp business automation, appointment booking systems, and AI voice agents for Meta ad leads.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikasam | Growth, In Motion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="grain"></div>
-<div class="glow-bg"></div>
-
-<header class="site-header" id="top">
-  <div class="header-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="28" height="28">
-          <path d="M16 28V14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M16 18C16 12 11 10 7 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M16 14C16 8 21 6 25 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="logo-text">VIKASAM</span>
-    </a>
-    <nav class="main-nav" aria-label="Primary">
-      <a href="#systems">Systems</a>
-      <a href="#demo">Live Demo</a>
-      <a href="#process">Process</a>
-      <a href="#faq">FAQ</a>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">⑂</span> VIKASAM
+        </div>
+        <div class="nav-links">
+            <a href="#demo">Live Demo</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#process">Process</a>
+        </div>
+        <div class="nav-actions">
+            <button class="login-btn" onclick="openLoginModal()">Client Login</button>
+            <a href="#contact" class="btn-primary">Book Free Audit</a>
+        </div>
     </nav>
-    <a href="#contact" class="btn btn-primary nav-cta">Book Free Audit</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-    <a href="#systems">Systems</a>
-    <a href="#demo">Live Demo</a>
-    <a href="#process">Process</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact" class="btn btn-primary">Book Free Audit</a>
-  </nav>
-</header>
 
-<main>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">VIKASAM · <span class="telugu">వికాసం</span> · &ldquo;GROWTH, IN MOTION&rdquo;</p>
-        <h1>One root system. <em>Three</em> ways your business grows on autopilot.</h1>
-        <p class="hero-sub">We build the WhatsApp conversations, the booking flows, and the voice agents that pick up your leads the second they land — so nothing you pay for in ads goes cold.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Book a Free Audit</a>
-          <a href="#demo" class="btn btn-ghost">Hear the AI ↓</a>
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="eyebrow">VIKASAM • వికాసం • "GROWTH, IN MOTION"</p>
+                <h1>One root system. <span class="highlight">Three</span> ways your business grows.</h1>
+                <p class="subtitle">We build the WhatsApp conversations, the booking flows, and the voice agents that pick up your leads the second they land.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Book a Free Audit</a>
+                    <a href="#demo" class="btn-secondary">Hear the AI ↓</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tree-graphic">
+                    <div class="node left">WhatsApp Automation</div>
+                    <div class="node center">Appointment Booking</div>
+                    <div class="node right">AI Voice Agent</div>
+                    <div class="stem"></div>
+                </div>
+            </div>
         </div>
-        <div class="hero-trust">
-          <span>Built for</span>
-          <div class="trust-marquee" aria-hidden="true">
-            <span>Real Estate</span><span>Clinics</span><span>Coaches</span><span>D2C Brands</span><span>Agencies</span><span>Local Services</span>
-          </div>
-        </div>
-      </div>
+    </header>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="glow-orb"></div>
-        <svg class="growth-svg" viewBox="0 0 480 560" fill="none">
-          <path class="root-path" d="M240 540 L240 360" stroke="#7CFFAE" stroke-width="3" stroke-linecap="round"/>
-          <path class="branch-path b1" d="M240 360 C 240 300, 150 290, 110 220" stroke="#7CFFAE" stroke-width="2.5" stroke-linecap="round"/>
-          <path class="branch-path b2" d="M240 360 C 240 280, 240 250, 240 160" stroke="#7CFFAE" stroke-width="2.5" stroke-linecap="round"/>
-          <path class="branch-path b3" d="M240 360 C 240 300, 330 290, 370 220" stroke="#7CFFAE" stroke-width="2.5" stroke-linecap="round"/>
-          <g class="node n1"><circle cx="110" cy="220" r="34" fill="#0F2A1E" stroke="#7CFFAE" stroke-width="1.5"/><path d="M110 204a16 16 0 1 0 13 25l8 3-3-8a16 16 0 0 0-18-20z" stroke="#7CFFAE" stroke-width="1.6" fill="none"/></g>
-          <g class="node n2"><circle cx="240" cy="160" r="34" fill="#0F2A1E" stroke="#7CFFAE" stroke-width="1.5"/><rect x="226" y="146" width="28" height="26" rx="3" stroke="#7CFFAE" stroke-width="1.6" fill="none"/><line x1="226" y1="155" x2="254" y2="155" stroke="#7CFFAE" stroke-width="1.4"/><line x1="233" y1="142" x2="233" y2="150" stroke="#7CFFAE" stroke-width="1.4"/><line x1="247" y1="142" x2="247" y2="150" stroke="#7CFFAE" stroke-width="1.4"/></g>
-          <g class="node n3"><circle cx="370" cy="220" r="34" fill="#0F2A1E" stroke="#7CFFAE" stroke-width="1.5"/><path d="M370 206v18M362 210v10a8 8 0 0 0 16 0v-10" stroke="#7CFFAE" stroke-width="1.6" fill="none" stroke-linecap="round"/><line x1="370" y1="230" x2="370" y2="234" stroke="#7CFFAE" stroke-width="1.6"/></g>
-          <circle class="seed" cx="240" cy="540" r="6" fill="#7CFFAE"/>
-        </svg>
-        <div class="visual-tag tag1">WhatsApp Automation</div>
-        <div class="visual-tag tag2">Appointment Booking</div>
-        <div class="visual-tag tag3">AI Voice Agent</div>
-      </div>
+    <section class="built-for-section">
+        <span class="built-for-label">BUILT FOR</span>
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
+                <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
+                <span class="pill">Real Estate</span><span class="pill">Clinics</span><span class="pill">Coaches</span>
+                <span class="pill">D2C Brands</span><span class="pill">Agencies</span><span class="pill">Local Services</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="voice-library">
+        <div class="section-header">
+            <h2>Native voices that build trust.</h2>
+            <p>Listen to our pre-trained AI agents built specifically for Indian businesses.</p>
+        </div>
+        <div class="voice-grid">
+            <div class="voice-card">
+                <div class="voice-header">
+                    <h3>Kavya</h3>
+                    <span class="tag">Warm & Conversational</span>
+                </div>
+                <audio controls class="custom-audio"><source src="kavya.mp3" type="audio/mpeg"></audio>
+            </div>
+            <div class="voice-card premium">
+                <div class="voice-header">
+                    <h3>Vikasam</h3>
+                    <span class="tag highlight-tag">Flagship Agent</span>
+                </div>
+                <audio controls class="custom-audio"><source src="vikasam.mp3" type="audio/mpeg"></audio>
+            </div>
+            <div class="voice-card">
+                <div class="voice-header">
+                    <h3>Dheeraj</h3>
+                    <span class="tag">Deep & Professional</span>
+                </div>
+                <audio controls class="custom-audio"><source src="dheeraj.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-header">
+            <h2>How It Actually Works</h2>
+        </div>
+        <div class="process-container">
+            <div class="process-steps">
+                <div class="step-card active" onclick="switchProcess('webhook', this)">
+                    <h4>1. Lead Captured</h4>
+                    <p>A prospect fills out a lead form. Instantly, their data hits our system.</p>
+                </div>
+                <div class="step-card" onclick="switchProcess('call', this)">
+                    <h4>2. The 2-Second Call</h4>
+                    <p>Our AI dials them within 2 seconds. It speaks fluent Telugu or English.</p>
+                </div>
+                <div class="step-card" onclick="switchProcess('qualify', this)">
+                    <h4>3. Meeting Booked</h4>
+                    <p>The AI answers objections, qualifies the lead, and books them in your calendar.</p>
+                </div>
+            </div>
+
+            <div class="process-visuals">
+                <div id="visual-webhook" class="visual-panel active-visual">
+                    <div class="code-block">
+                        <div class="code-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">webhook.json</span></div>
+                        <pre><code>{
+  "event": "lead_captured",
+  "source": "Meta Ads",
+  "contact": {
+    "name": "Rahul S.",
+    "phone": "+91 98765 43210"
+  },
+  "trigger": "Initiate_AI_Call"
+}</code></pre>
+                    </div>
+                </div>
+                <div id="visual-call" class="visual-panel">
+                    <div class="call-graphic">
+                        <h4>Incoming Call</h4>
+                        <h2>Vikasam AI</h2>
+                        <p class="status">Speaking Telugu...</p>
+                        <div class="call-waves"><span></span><span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+                <div id="visual-qualify" class="visual-panel">
+                    <div class="success-graphic">
+                        <div class="check-circle">✓</div>
+                        <h3>Meeting Booked</h3>
+                        <p>Added to Google Calendar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="setup-process">
+        <div class="section-header">
+            <h2>From first call to live system.</h2>
+        </div>
+        <div class="process-grid">
+            <div class="setup-card">
+                <span class="step-num">1</span>
+                <h3>Map the Leak</h3>
+                <p>We see where leads drop off in your current flow.</p>
+            </div>
+            <div class="setup-card">
+                <span class="step-num">2</span>
+                <h3>Scope & Price</h3>
+                <p>You get the exact system and timeline in writing.</p>
+            </div>
+            <div class="setup-card">
+                <span class="step-num">3</span>
+                <h3>We Build</h3>
+                <p>We connect APIs, train the AI, and link your CRM.</p>
+            </div>
+            <div class="setup-card">
+                <span class="step-num">4</span>
+                <h3>Go Live</h3>
+                <p>Live in under two weeks. Automated bookings start.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-box">
+            <h2>Book Your Free Audit</h2>
+            <p>Tell us where the leads are going cold.</p>
+            <form class="audit-form" id="auditForm">
+                <input type="text" placeholder="Name" required>
+                <input type="tel" placeholder="WhatsApp Number" required>
+                <input type="text" placeholder="Business Name">
+                <select>
+                    <option>Interested in AI Voice Calling</option>
+                    <option>Interested in WhatsApp Automation</option>
+                    <option>Interested in Booking Automation</option>
+                </select>
+                <button type="submit" class="btn-primary full-width">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">⑂</span> VIKASAM
+                <p>Growth, in motion. Built for Indian Businesses.</p>
+            </div>
+            <div class="footer-links">
+                <p>© 2026 Vikasam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Client Portal</h2>
+                <p>Sign in to manage your agents.</p>
+            </div>
+            <form class="login-form">
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary full-width">Sign In</button>
+            </form>
+            <p class="admin-note">Credentials are provided by the Vikasam team.</p>
+        </div>
     </div>
-  </section>
 
-  <!-- SYSTEMS (Keeping it tight) -->
-  <section class="systems" id="systems">
-    <div class="section-inner">
-      <div class="system-grid-mini">
-        <div class="sys-card scroll-reveal">
-          <div class="sys-icon">💬</div>
-          <h3>WhatsApp Automation</h3>
-          <p>End-to-end automated conversations — from the first "Hi" to a confirmed sale.</p>
-        </div>
-        <div class="sys-card scroll-reveal">
-          <div class="sys-icon">📅</div>
-          <h3>Booking Automation</h3>
-          <p>Prospects book themselves. The system handles confirmations, reminders, and reschedules.</p>
-        </div>
-        <div class="sys-card scroll-reveal">
-          <div class="sys-icon">🎙️</div>
-          <h3>AI Voice Agents</h3>
-          <p>Instant outbound calling for Meta/Google ads. Qualifies leads in natural Telugu or English.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HEAR THE AI IN ACTION -->
-  <section class="voice-library" id="demo">
-    <div class="section-inner">
-      <div class="center-heading scroll-reveal">
-        <h2>Hear the AI in Action</h2>
-        <p class="section-sub">Choose from the Vikasam Voice Library featuring ultra-realistic native Telugu voices.</p>
-      </div>
-
-      <div class="voice-cards">
-        <!-- Agent 1 -->
-        <div class="voice-card scroll-reveal">
-          <div class="vc-top">
-            <div class="vc-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
-            <button class="play-btn" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></button>
-          </div>
-          <div class="vc-mid">
-            <span class="lang-tag">🔊 NATIVE TELUGU</span>
-            <h3>సాహితి Sahithi</h3>
-            <p>Warm & Conversational</p>
-          </div>
-          <div class="vc-bottom">
-            <span class="time-current">0:00</span>
-            <div class="waveform-fake">
-              <div class="wave-fill"></div>
-              <span>••••••••••••••••</span>
-            </div>
-            <span class="time-total">0:45</span>
-          </div>
-        </div>
-
-        <!-- Agent 2 -->
-        <div class="voice-card scroll-reveal" style="transition-delay: 0.1s">
-          <div class="vc-top">
-            <div class="vc-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-            <button class="play-btn" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></button>
-          </div>
-          <div class="vc-mid">
-            <span class="lang-tag">🔊 NATIVE TELUGU</span>
-            <h3>భాస్కర్ Bhaskar</h3>
-            <p>Energetic & Upbeat</p>
-          </div>
-          <div class="vc-bottom">
-            <span class="time-current">0:00</span>
-            <div class="waveform-fake">
-               <div class="wave-fill"></div>
-              <span>••••••••••••••••</span>
-            </div>
-            <span class="time-total">1:00</span>
-          </div>
-        </div>
-
-        <!-- Agent 3 -->
-        <div class="voice-card scroll-reveal" style="transition-delay: 0.2s">
-          <div class="vc-top">
-            <div class="vc-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <button class="play-btn" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></button>
-          </div>
-          <div class="vc-mid">
-            <span class="lang-tag">🔊 NATIVE TELUGU</span>
-            <h3>ఆనంద్ Anand</h3>
-            <p>Deep & Professional</p>
-          </div>
-          <div class="vc-bottom">
-            <span class="time-current">0:00</span>
-            <div class="waveform-fake">
-               <div class="wave-fill"></div>
-              <span>••••••••••••••••</span>
-            </div>
-            <span class="time-total">0:52</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT ACTUALLY WORKS (Tabbed Interactive Demo) -->
-  <section class="how-it-works">
-    <div class="section-inner">
-      <div class="center-heading scroll-reveal">
-        <h2>How It Actually Works</h2>
-      </div>
-      
-      <div class="tabs-container scroll-reveal">
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-target="tab-1">Instant Lead Call</button>
-          <button class="tab-btn" data-target="tab-2">Bulk Campaigns</button>
-          <button class="tab-btn" data-target="tab-3">24/7 Inbound</button>
-        </div>
-
-        <!-- TAB 1: Instant Lead Call -->
-        <div class="tab-content active" id="tab-1">
-          <div class="tab-split">
-            <div class="stepper">
-              <div class="step active">
-                <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
-                <div class="step-text">
-                  <h4>1. Lead Captured</h4>
-                  <p>A prospect sees your Facebook Ad and fills out a lead form. They are interested, but haven't spoken to anyone yet.</p>
-                </div>
-              </div>
-              <div class="step active highlight">
-                <div class="step-icon glow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <div class="step-text">
-                  <h4>2. The 2-Second Call</h4>
-                  <p>Before they even close their browser, our AI agent calls them. It speaks fluent Telugu, engaging them instantly.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
-                <div class="step-text">
-                  <h4>3. Qualifies & Objections</h4>
-                  <p>The AI acts as your best salesperson. It answers questions, handles pricing objections naturally, and qualifies intent.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="demo-visual">
-              <div class="phone-mockup">
-                <div class="phone-status">Incoming Call</div>
-                <div class="phone-caller">Vikasam AI</div>
-                <div class="live-bars">
-                  <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                </div>
-                <div class="phone-action">SPEAKING TELUGU...</div>
-                <div class="phone-buttons">
-                  <div class="btn-reject"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg></div>
-                  <div class="btn-accept"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 2: Bulk Campaigns -->
-        <div class="tab-content" id="tab-2">
-          <div class="tab-split">
-            <div class="stepper">
-              <div class="step active highlight">
-                <div class="step-icon glow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
-                <div class="step-text">
-                  <h4>1. Data Uploaded</h4>
-                  <p>Upload a CSV of 1,000+ past dead leads or a new promotional list into the Vikasam Hub.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
-                <div class="step-text">
-                  <h4>2. Mass Voice Outreach</h4>
-                  <p>The AI dials hundreds of leads concurrently. It doesn't sound like a pre-recorded blast; it's a dynamic, personalized call.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="demo-visual">
-               <div class="dashboard-mockup">
-                 <div class="dash-header">Campaign: Reactivation</div>
-                 <div class="dash-stats">
-                   <div class="stat-box"><span>Called</span><strong>1,240</strong></div>
-                   <div class="stat-box"><span>Answered</span><strong style="color:var(--leaf)">892</strong></div>
-                   <div class="stat-box"><span>Meetings</span><strong style="color:var(--clay)">114</strong></div>
-                 </div>
-                 <div class="dash-progress"><div class="dash-fill" style="width:72%"></div></div>
-               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 3: 24/7 Inbound -->
-        <div class="tab-content" id="tab-3">
-          <div class="tab-split">
-            <div class="stepper">
-              <div class="step">
-                <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                <div class="step-text">
-                  <h4>1. After-Hours Call</h4>
-                  <p>A customer calls your clinic or agency at 11 PM. Your team is asleep.</p>
-                </div>
-              </div>
-              <div class="step active highlight">
-                <div class="step-icon glow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
-                <div class="step-text">
-                  <h4>2. AI Support Picks Up</h4>
-                  <p>Vikasam answers on the first ring, handles FAQs, and books them straight into your calendar for the next morning.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="demo-visual">
-               <div class="chat-mockup">
-                 <div class="chat-header">LIVE TRANSCRIPT</div>
-                 <div class="chat-bubble ai">Namaskaram, Vikasam clinic nunchi matladutunnanu. Yela sahayam cheyagalanu?</div>
-                 <div class="chat-bubble user">Repu morning dr. appointment dorukutunda?</div>
-                 <div class="chat-bubble ai typing">
-                   <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-                 </div>
-               </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="process" id="process">
-    <!-- Keep your existing Process HTML here[cite: 1] -->
-    <div class="section-inner">
-      <p class="eyebrow">HOW WE WORK</p>
-      <h2>From first call to live system, in two weeks.</h2>
-      <div class="process-track">
-        <div class="process-line" aria-hidden="true"></div>
-        <div class="process-step scroll-reveal">
-          <span class="step-index">1</span>
-          <h3>We map your leak</h3>
-          <p>A 30-minute call. We learn how leads flow through your business today, and where they fall through.</p>
-        </div>
-        <div class="process-step scroll-reveal">
-          <span class="step-index">2</span>
-          <h3>We scope it in writing</h3>
-          <p>You get the exact system, timeline, and price before anything starts.</p>
-        </div>
-        <div class="process-step scroll-reveal">
-          <span class="step-index">3</span>
-          <h3>We build &amp; connect</h3>
-          <p>We wire it into WhatsApp, your calendar, your CRM, and ads. You don't touch an API.</p>
-        </div>
-        <div class="process-step scroll-reveal">
-          <span class="step-index">4</span>
-          <h3>Live &amp; Reporting</h3>
-          <p>Live in under two weeks. We track response time and bookings from day one.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / CTA -->
-  <section class="cta-final" id="contact">
-    <div class="section-inner cta-inner">
-      <p class="eyebrow">LET'S TALK</p>
-      <h2>Tell us where the leads are going cold.</h2>
-      <p class="section-sub">Book a free 30-minute audit. We'll show you exactly which of the three systems fits your business.</p>
-
-      <form class="contact-form scroll-reveal" id="contactForm">
-        <div class="form-row">
-          <div class="field"><label for="name">Name</label><input type="text" id="name" required placeholder="Your name"></div>
-          <div class="field"><label for="phone">WhatsApp Number</label><input type="tel" id="phone" required placeholder="+91 90000 00000"></div>
-        </div>
-        <div class="form-row">
-          <div class="field"><label for="business">Business Name</label><input type="text" id="business" placeholder="Your business"></div>
-          <div class="field">
-            <label for="interest">Which system interests you?</label>
-            <select id="interest">
-              <option value="whatsapp">WhatsApp Business Automation</option>
-              <option value="booking">Appointment Booking Automation</option>
-              <option value="voice">AI Voice Agent for Ad Leads</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-large">Book My Free Audit</button>
-      </form>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="section-inner footer-inner">
-    <div class="footer-brand">
-      <span class="logo-text">VIKASAM</span>
-      <p>WhatsApp automation, booking systems, and AI voice agents — built for Indian businesses.</p>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Vikasam. All rights reserved.</span>
-    </div>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
